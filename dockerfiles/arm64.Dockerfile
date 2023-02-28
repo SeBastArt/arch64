@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:6.0-jammy-arm64v8 AS build-env
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine-arm64v8 AS build-env
 WORKDIR /app
 
 # Copy everthing in src directory
@@ -9,7 +9,7 @@ RUN dotnet restore ./arch64.csproj --disable-parallel
 RUN dotnet publish ./arch64.csproj -c Release -o out --no-restore
 
 # Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-jammy-arm64v8
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine-arm64v8
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
