@@ -7,7 +7,7 @@ on:
       baseversion:
         description: 'Image base version'
         required: true
-        default: '0.9'
+        default: '0.1'
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
       -
         name: Build docker image
         if: success()
-        working-directory: src
+        working-directory: .
         run: |
           docker buildx build . \
             --platform ${{ steps.prepare.outputs.docker_platform }} \
